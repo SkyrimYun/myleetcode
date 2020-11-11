@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "vector": "cpp"
-    }
+        "vector": "cpp",
+        "algorithm": "cpp"
+    },
+    "python.dataScience.jupyterServerURI": "local"
 }
