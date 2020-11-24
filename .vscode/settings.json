@@ -2,7 +2,12 @@
     "files.associations": {
         "iostream": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp"
     },
     "python.dataScience.jupyterServerURI": "local"
 }
