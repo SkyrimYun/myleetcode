@@ -1,24 +1,17 @@
-/*
-注意二分法的起始状态和搜索空间
-1. start和end为指向第一个和最后一个元素
-2. while的条件为start<=end，注意这个等号
-3. 下一轮的搜索空间不要把middle包含在里面
-
-针对这个题，相比于基础二分法，主要是在下一轮进入左边还是右边有更多的条件来决定
-*/
-
 #include <iostream>
 #include <vector>
+#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
 class Solution
 {
 public:
-    int search(vector<int> &nums, int target)
+    bool search(vector<int> &nums, int target)
     {
         int sz = nums.size();
         int middle = sz / 2;
@@ -26,32 +19,40 @@ public:
         int end = sz - 1;
         while (start <= end)
         {
+            while (start < end && nums[start] == nums[end])
+            {
+                start++;
+                middle = (start + end) / 2;
+            }
+            if (start > end)
+                return false;
+
             if (nums[middle] == target)
-                return middle;
+                return true;
 
             if (nums[middle] >= nums[start])
             {
-                if (target < nums[middle] && target >= nums[start]) // left half is sorted
+                if (target < nums[middle] && target >= nums[start])
                     end = middle - 1;
                 else
                     start = middle + 1;
             }
             else
             {
-                if (target > nums[middle] && target <= nums[end]) // right half is sorted
+                if (target > nums[middle] && target <= nums[end])
                     start = middle + 1;
                 else
                     end = middle - 1;
             }
             middle = (start + end) / 2;
         }
-        return -1;
+        return false;
     }
 };
 
 int main()
 {
-    vector<int> nums{6, 7, 8, 9, 1, 2, 3, 4, 5};
+    vector<int> nums{1, 3, 1, 1};
     Solution s;
-    cout << s.search(nums, 8);
+    cout << s.search(nums, 3);
 }

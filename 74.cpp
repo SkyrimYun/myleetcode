@@ -59,9 +59,3 @@ public:
             return true;
     }
 };
-
-int main()
-{
-    Solution s;
-    s.searchMatrix();
-}
