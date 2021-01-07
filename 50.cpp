@@ -18,13 +18,14 @@ using namespace std;
 class Solution
 {
 private:
+    //这里的递归函数的定义： 拿到浮点数x和正整数n，返回pow(x,n)
     double binser(double x, long n)
     {
         if (n == 0 || x == 1)
             return 1;
 
         double y = binser(x, n / 2);
-        return n % 2 == 0 ? y * y : y * y * x; //注意这里的条件
+        return n % 2 == 0 ? y * y : y * y * x; //注意这里的条件，如果n为2的倍数，那么(n/2+n/2)=n，如果不是，那么(n/2+n/2+1)=n
     }
 
 public:

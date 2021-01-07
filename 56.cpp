@@ -1,3 +1,7 @@
+/*
+默认的vector<vector<int>>排序的依据是子vector中第一个元素的大小
+*/
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
