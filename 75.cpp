@@ -25,11 +25,13 @@ public:
 
         for (int i = 0; i <= point2; i++)
         {
+            // handle case 2
             while (i <= point2 && nums[i] == 2)
             {
                 swap(nums[point2], nums[i]);
                 point2--;
             }
+            // handle case 0
             if (nums[i] == 0)
             {
                 swap(nums[point1], nums[i]);
