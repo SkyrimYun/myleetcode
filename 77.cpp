@@ -1,6 +1,8 @@
 /*
 剔除vector最后一个元素用pop_back()最好，erase(end()-1)太慢了
 写递归的时候注意剪枝；缩小搜索空间能加快速度
+(sz - candidate.size())：还需要选多少个数
+max - (sz - candidate.size()) + 1 ： 从那一个数字开始，就已经凑不起需要的数字了
 */
 
 #include <iostream>
@@ -27,7 +29,7 @@ private:
             return;
         }
 
-        for (int i = pos; i <= max - (sz - candidate.size()) + 1; i++)
+        for (int i = pos; i <= max - (sz - candidate.size()) + 1; i++) //剪枝
         {
             candidate.emplace_back(i);
             dfs(candidate, i + 1);

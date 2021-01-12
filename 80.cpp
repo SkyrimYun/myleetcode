@@ -1,6 +1,6 @@
 /*
 迭代器 p1=p2 会让两个迭代器指向同一个元素，会导致相互影响
-用erase(p1)之后，p1会自动指向被删掉的下一个元素
+用erase(p1)之后，p1会自动指向被删掉元素的下一个元素
 advance(iterator,pos) 把迭代器向前推进pos个位置
 next(iterator,pos); prev(iterator,pos) 返回此迭代器前/后pos个位置的迭代器
 */
@@ -18,32 +18,53 @@ using namespace std;
 class Solution
 {
 public:
+    // int removeDuplicates(vector<int> &nums)
+    // {
+    //     vector<int>::iterator p1 = nums.begin(), p2 = nums.begin();
+    //     int count = 0;
+    //     while (p1 != nums.end() && p2 != nums.end())
+    //     {
+
+    //         if (*p1 == *p2)
+    //         {
+    //             count++;
+    //         }
+    //         else
+    //         {
+    //             p1 = p2;
+    //             count = 1;
+    //         }
+
+    //         if (count == 3)
+    //         {
+    //             nums.erase(p2);
+    //             count--;
+    //         }
+    //         else
+    //             p2++;
+    //     }
+    //     return nums.size();
+    // }
     int removeDuplicates(vector<int> &nums)
     {
-        vector<int>::iterator p1 = nums.begin(), p2 = nums.begin();
-        int count = 0;
-        while (p1 != nums.end() && p2 != nums.end())
+        if (nums.size() < 3)
+            return nums.size();
+        vector<int>::iterator it1 = nums.begin();
+        vector<int>::iterator it2;
+        vector<int>::iterator it3;
+        int sz = nums.size();
+        for (int i = 0; i < sz - 2; i++)
         {
-
-            if (*p1 == *p2)
+            it2 = next(it1, 1);
+            it3 = next(it1, 2);
+            while (it3 != nums.end() && *it1 == *it2 && *it2 == *it3)
             {
-                count++;
+                nums.erase(it3);
+                sz--;
             }
-            else
-            {
-                p1 = p2;
-                count = 1;
-            }
-
-            if (count == 3)
-            {
-                nums.erase(p2);
-                count--;
-            }
-            else
-                p2++;
+            it1++;
         }
-        return nums.size();
+        return sz;
     }
 };
 

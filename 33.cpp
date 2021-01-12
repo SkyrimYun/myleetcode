@@ -3,6 +3,7 @@
 1. start和end为指向第一个和最后一个元素
 2. while的条件为start<=end，注意这个等号
 3. 下一轮的搜索空间不要把middle包含在里面
+4. 计算mid用 mid=start+(end-start)/2; 而不是 mid=(start+end)/2; 避免(start+end)溢出
 
 针对这个题，相比于基础二分法，主要是在下一轮进入左边还是右边有更多的条件来决定
 */
@@ -29,16 +30,18 @@ public:
             if (nums[middle] == target)
                 return middle;
 
+            // left half is sorted
             if (nums[middle] >= nums[start])
             {
-                if (target < nums[middle] && target >= nums[start]) // left half is sorted
+                if (target < nums[middle] && target >= nums[start])
                     end = middle - 1;
                 else
                     start = middle + 1;
             }
+            // right half is sorted
             else
             {
-                if (target > nums[middle] && target <= nums[end]) // right half is sorted
+                if (target > nums[middle] && target <= nums[end])
                     start = middle + 1;
                 else
                     end = middle - 1;

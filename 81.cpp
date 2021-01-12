@@ -1,3 +1,8 @@
+/*
+二分法的核心还是在于判断target到底在左半边还是右半边
+像这种变种题，万变不离其宗，用更细致的条件来决定下一轮进左还是进右
+*/
+
 #include <iostream>
 #include <vector>
 #include <stack>
