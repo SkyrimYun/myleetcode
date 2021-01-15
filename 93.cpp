@@ -1,8 +1,8 @@
 /*
 稍微优雅一些的string转int：
-int sub_num = 0;
-for (int j = 0; j < sub.size(); j++)
-    sub_num = sub_num * 10 + (sub[j] - '0');
+int num = 0;
+for (int j = 0; j < strting.size(); j++)
+    num = num * 10 + (string[j] - '0');
 
 或者调用函数
 stoi() string -> int
