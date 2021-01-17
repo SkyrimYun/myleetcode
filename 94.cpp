@@ -26,24 +26,47 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// class Solution
+// {
+// private:
+//     vector<int> ret;
+//     void dfs(TreeNode *root)
+//     {
+//         if (root->left != nullptr)
+//             dfs(root->left);
+//         ret.emplace_back(root->val);
+//         if (root->right != nullptr)
+//             dfs(root->right);
+//     }
+
+// public:
+//     vector<int> inorderTraversal(TreeNode *root)
+//     {
+//         if (root != nullptr)
+//             dfs(root);
+//         return ret;
+//     }
+// };
+
 class Solution
 {
 private:
-    vector<int> ret;
-    void dfs(TreeNode *root)
+    void dfs(TreeNode *root, vector<int> &ans)
     {
         if (root->left != nullptr)
-            dfs(root->left);
-        ret.emplace_back(root->val);
+            dfs(root->left, ans);
+
+        ans.emplace_back(root->val);
+
         if (root->right != nullptr)
-            dfs(root->right);
+            dfs(root->right, ans);
     }
 
 public:
     vector<int> inorderTraversal(TreeNode *root)
     {
-        if (root != nullptr)
-            dfs(root);
+        vector<int> ret;
+        dfs(root, ret);
         return ret;
     }
 };

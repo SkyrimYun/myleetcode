@@ -1,3 +1,11 @@
+/*
+BST中给定（不含重复元素）序列，求可能构成的不同BST个数
+这个个数只和序列长度有关
+此题不同于上题，只求个数不求具体树构成，所以不用管node如何
+动态规划核心：
+    对于一个长度为n的序列，选择第i个元素为根，其不同BST个数 = (i-1长度的序列所能构成的BST个数) * (n-i长度的序列所能构成的BST个数)
+*/
+
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -24,7 +32,7 @@ class Solution
 public:
     int numTrees(int n)
     {
-        vector<int> G(n + 1, 0);
+        vector<int> G(n + 1, 0); // 长度为n的序列能构成的不同BST个数
         G[0] = 1;
         G[1] = 1;
 
