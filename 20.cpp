@@ -14,12 +14,14 @@ using namespace std;
 
 class Solution
 {
+private:
+    unordered_map<char, int> bracket;
+
 public:
     bool isValid(string s)
     {
         if (s.size() % 2 != 0)
             return false;
-        unordered_map<char, int> bracket;
         bracket.emplace('(', 1);
         bracket.emplace('{', 2);
         bracket.emplace('[', 3);
@@ -32,14 +34,10 @@ public:
             if (bracket[c] <= 3)
                 pair.push(c);
             else if (bracket[c] > 3 && !pair.empty() && bracket[c] == bracket[pair.top()] + 3)
-            {
                 pair.pop();
-            }
             else
                 return false;
         }
-        if (!pair.empty())
-            return false;
-        return true;
+        return pair.empty();
     }
 };
