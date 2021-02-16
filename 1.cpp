@@ -8,6 +8,8 @@ To see whether the table contains a key "hash.count(key)" if =0, not exist; =1, 
 To search a key: "hash.find(key)"
 */
 
+//nmsl
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
