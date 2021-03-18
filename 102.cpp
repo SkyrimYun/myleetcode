@@ -2,6 +2,7 @@
 和二叉树有关的迭代法中常用到quene结构
 先进，先出
 把每一层的node都压入quene，再依次吐出，然后压入其子节点
+每一轮迭代quene的size都为当前层的node数量
 其实迭代法的本质也就算广度优先搜索BFS
 */
 
@@ -52,32 +53,32 @@ public:
     }
 
     //迭代法
-    // vector<vector<int>> levelOrder(TreeNode *root)
-    // {
-    //     queue<TreeNode *> que;
-    //     que.push(root);
-    //     vector<vector<int>> res;
-    //     while (que.size() != 0)
-    //     {
-    //         int size = que.size();
-    //         vector<int> level;
-    //         while (size--)
-    //         {
-    //             TreeNode *cur = que.front();
-    //             que.pop();
-    //             if (!cur)
-    //             {
-    //                 continue;
-    //             }
-    //             level.push_back(cur->val);
-    //             que.push(cur->left);
-    //             que.push(cur->right);
-    //         }
-    //         if (level.size() != 0)
-    //         {
-    //             res.push_back(level);
-    //         }
-    //     }
-    //     return res;
-    // }
+    vector<vector<int>> levelOrder(TreeNode *root)
+    {
+        queue<TreeNode *> que;
+        que.push(root);
+        vector<vector<int>> res;
+        while (que.size() != 0)
+        {
+            int size = que.size();
+            vector<int> level;
+            while (size--)
+            {
+                TreeNode *cur = que.front();
+                que.pop();
+                if (!cur)
+                {
+                    continue;
+                }
+                level.push_back(cur->val);
+                que.push(cur->left);
+                que.push(cur->right);
+            }
+            if (level.size() != 0)
+            {
+                res.push_back(level);
+            }
+        }
+        return res;
+    }
 };

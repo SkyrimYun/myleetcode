@@ -69,4 +69,59 @@ public:
         dfs(root, ret);
         return ret;
     }
+
+    //迭代
+    vector<int> inorderTraversal(TreeNode *root)
+    {
+        vector<int> ret;
+        stack<TreeNode *> st;
+        TreeNode *cur = root;
+        while (cur || !st.empty())
+        {
+            while (cur)
+            {
+                st.push(cur);
+                cur = cur->left;
+            }
+            cur = st.top();
+            ret.push_back(cur->val);
+            st.pop();
+            cur = cur->right;
+        }
+        return ret;
+    }
+
+    //迭代，前序
+    vector<int> preorderTraversal(TreeNode *root)
+    {
+        // vector<int> ret;
+        // stack<TreeNode *> st;
+        // while (root || !st.empty())
+        // {
+        //     while (root)
+        //     {
+        //         ret.push_back(root->val);
+        //         st.push(root);
+        //         root = root->left;
+        //     }
+        //     root = st.top();
+        //     st.pop();
+        //     root = root->right;
+        // }
+        // return ret;
+
+        vector<int> ret;
+        stack<TreeNode *> st;
+        st.push(root);
+        while (!st.empty())
+        {
+            TreeNode *cur = st.top();
+            st.pop();
+            ret.push_back(cur->val);
+            if (cur->right)
+                st.push(cur->right);
+            if (cur->left)
+                st.push(cur->left);
+        }
+    }
 };
